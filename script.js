@@ -9,6 +9,7 @@ function getElements(){
     let inputs = checklist.querySelectorAll("input");
     // inputs is a list of all the input elements
     return [checklist,items,inputs];
+    // returns the checklist,items and inputs in a list
 }
 
 function addListeners(list){
@@ -65,3 +66,15 @@ function addToList(){
     addListeners(getElements())
     // Runs the addListeners function to add listeners to the new <li> and its <input>.
 }
+
+function deleteFromList(){
+    let items = checklist.querySelectorAll("li");
+    console.log(items.length)
+    for(let i = 0; i < items.length; i++){
+        if (i === items.length - 1){
+            l = items[i];
+            l.remove();
+        }
+    }
+    // loops through each list item in the unordered list until it reaches the last one which it delets.
+} 
