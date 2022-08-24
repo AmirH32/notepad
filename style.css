@@ -1,11 +1,23 @@
 body{
     font-family: Arial;
     color: grey;
-    padding: 0 20%;
+}
+
+h1{
+    text-decoration: underline;
+    padding-left: 20px;
+}
+
+.btn{
+    margin-left: 20px;
 }
 
 li input{
     display:none;
+}
+
+ul{
+    color: black;
 }
 
 li.edit span{
