@@ -19,14 +19,17 @@ function addListeners(list){
     for (let i = 0; i< items.length;i++){
         items[i].addEventListener("click", editItem);
         // Each item listens for a click and if it is clicked, the editItem function is run
-        inputs[i].addEventListener("blur", updateItem);
+        // inputs[i].addEventListener("blur", updateItem);
         // Each input listens for a blur and if so it runs the updateItem function
         inputs[i].addEventListener("keypress", itemKeypress);
         // Each input listens for any keypress
     }
 }
 
-function editItem(){
+function editItem(items){
+    for (let i = 0; i<items.length;i++){
+        items[i].className = ""
+    }
     this.className = "edit"
     // the <li> that was clicked is given the edit class
     var input = this.querySelector("input");
@@ -69,10 +72,10 @@ function addToList(){
 
 function deleteFromList(){
     let items = checklist.querySelectorAll("li");
-    console.log(items.length)
     for(let i = 0; i < items.length; i++){
-        if (i === items.length - 1){
-            l = items[i];
+        let l = items[i];
+        console.log(items[i])
+        if (l.className == "edit"){
             l.remove();
         }
     }
