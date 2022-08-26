@@ -13,26 +13,26 @@ function getElements(){
 }
 
 function addListeners(list){
-    let checklist = list[0]
-    let items = list[1]
-    let inputs = list[2]
+    let checklist = list[0];
+    let items = list[1];
+    let inputs = list[2];
     for (let i = 0; i< items.length;i++){
         items[i].addEventListener("click", editItem);
-        // Each item listens for a click and if it is clicked, the editItem function is run
-        // inputs[i].addEventListener("blur", updateItem);
-        // Each input listens for a blur and if so it runs the updateItem function
+        // Each item listens for a click and if it is clicked, the editItem function is run     
         inputs[i].addEventListener("keypress", itemKeypress);
         // Each input listens for any keypress
     }
 }
 
-function editItem(items){
+function editItem(){
+    let items = checklist.querySelectorAll("li");
     for (let i = 0; i<items.length;i++){
-        items[i].className = ""
+        items[i].className = "";
     }
-    this.className = "edit"
+    // Removes the edit class list from all items so that only one item on the list can be selected at a time
+    this.className = "edit";
     // the <li> that was clicked is given the edit class
-    var input = this.querySelector("input");
+    let input = this.querySelector("input");
     // input is assigned the element input which was clicked
     input.focus();
     // focuses on the element
@@ -41,8 +41,13 @@ function editItem(items){
 }
 
 function updateItem(){
-    this.previousElementSibling.innerHTML = this.value;
-    // the sibling <span> elements value is changed to the edit's value.
+    if (this.value === "Enter text here:"){
+        this.previousElementSibling.innerHTML = "";
+        // if the text isn't changed then the span element will be empty
+    }else{
+        this.previousElementSibling.innerHTML = this.value;
+        // the sibling <span> elements value is changed to the edit's value.
+    }
     this.parentNode.className = "";
     // the parent <li> no longer has a class
 }
@@ -74,7 +79,6 @@ function deleteFromList(){
     let items = checklist.querySelectorAll("li");
     for(let i = 0; i < items.length; i++){
         let l = items[i];
-        console.log(items[i])
         if (l.className == "edit"){
             l.remove();
         }
