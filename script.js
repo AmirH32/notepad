@@ -18,9 +18,16 @@ function addListeners(list){
     let inputs = list[2];
     for (let i = 0; i< items.length;i++){
         items[i].addEventListener("click", editItem);
-        // Each item listens for a click and if it is clicked, the editItem function is run     
+        // Each item listens for a click and if it is clicked, the editItem function is run
+
+        inputs[i].addEventListener("dblclick", deleteFromList);
+        // Deletes item if a specified input is double clicked
+        
         inputs[i].addEventListener("keypress", itemKeypress);
         // Each input listens for any keypress
+
+        inputs[i].addEventListener("blur", updateItem);
+        // Each input listens to for any clicks outside of the element
     }
 }
 
@@ -76,12 +83,7 @@ function addToList(){
 }
 
 function deleteFromList(){
-    let items = checklist.querySelectorAll("li");
-    for(let i = 0; i < items.length; i++){
-        let l = items[i];
-        if (l.className == "edit"){
-            l.remove();
-        }
-    }
-    // loops through each list item in the unordered list until it reaches the last one which it delets.
+    this.parentNode.remove()
+    // Removes the parent element which is the list element
 } 
+
